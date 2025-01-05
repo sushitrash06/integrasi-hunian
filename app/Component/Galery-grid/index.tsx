@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const images = [
@@ -25,7 +26,7 @@ const Gallery = () => {
             height: "200px", // Set base height for uniformity
           }}
         >
-          <img
+          <Image
             src={image.src}
             alt={`Gallery ${index + 1}`}
             className="w-full h-full object-cover"

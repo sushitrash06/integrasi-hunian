@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { FaTools, FaClock, FaMoneyBillWave, FaGem, FaShieldAlt, FaBug } from "react-icons/fa";
+import { FaTools, FaClock, FaMoneyBillWave, FaGem } from "react-icons/fa";
 
 const IntegrationSection: FC = () => {
   return (

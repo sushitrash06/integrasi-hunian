@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 
 const images = [
@@ -35,7 +36,7 @@ const SliderGallery = () => {
               className="w-full flex-shrink-0"
               style={{ minWidth: "100%" }}
             >
-              <img
+              <Image
                 src={image.src}
                 alt={`Slide ${image.id}`}
                 className="w-full h-64 object-cover"
