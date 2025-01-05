@@ -11,6 +11,14 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "maroon-dark": "#A90003", 
+        maroon: {
+          100: "#FBEDEC",
+          300: "#D59A9A",
+          600: "#8C2D35",
+          700: "#6B2026",
+          800: "#501618",
+        },
       },
     },
   },
