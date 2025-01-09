@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link"; 
-import PondokDukuh1 from "../../assets/pondokdukuh1.png";
-import BapakLukas1 from "../../assets/bapaklukas1.png";
-import PondokKuliner1 from "../../assets/pondokkuliner1.png";
-import TbSimatupang1 from "../../assets/tbsimatupang1.png";
-import KosKuliner1 from "../../assets/kioskuliner1.png";
+import Link from "next/link";
+import PondokDukuh1 from "../../Assets/pondokdukuh1.png";
+import BapakLukas1 from "../../Assets/bapaklukas1.png";
+import PondokKuliner1 from "../../Assets/pondokkuliner1.png";
+import TbSimatupang1 from "../../Assets/tbsimatupang1.png";
+import KosKuliner1 from "../../Assets/kioskuliner1.png";
 
 const images = [
   { id: 1, src: PondokDukuh1, title: "Pondok Dukuh" },
