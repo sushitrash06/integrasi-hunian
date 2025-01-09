@@ -5,12 +5,12 @@ import Image from "next/image";
 import Link from "next/link"; // Import Link from next
 
 // Import images
-import pondokDukuh1 from "@/app/assets/pondok-dukuh1.png";
-import bapakLukas1 from "@/app/assets/bapak-lukas1.png";
-import pondokKuliner1 from "@/app/assets/pondok-kuliner1.png";
-import tbSimatupang1 from "@/app/assets/tb-simatupang1.png";
-import kosKuliner1 from "@/app/assets/kios-kuliner1.png";
-import masjid from "@/app/assets/hero-image.png";
+import pondokDukuh1 from "../../assets/pondok-dukuh1.png";
+import bapakLukas1 from "../../assets/bapak-lukas1.png";
+import pondokKuliner1 from "../../assets/pondok-kuliner1.png";
+import tbSimatupang1 from "../../assets/tb-simatupang1.png";
+import kosKuliner1 from "../../assets/kios-kuliner1.png";
+import masjid from "../../assets/hero-image.png";
 
 const images = [
   { id: 1, src: pondokDukuh1, title: "Pondok Dukuh" },
