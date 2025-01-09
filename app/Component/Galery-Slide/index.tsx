@@ -8,6 +8,7 @@ import BapakLukas1 from "../../Assets/bapaklukas1.png";
 import PondokKuliner1 from "../../Assets/pondokkuliner1.png";
 import TbSimatupang1 from "../../Assets/tbsimatupang1.png";
 import KosKuliner1 from "../../Assets/kioskuliner1.png";
+import Masjid from "../../Assets/hero-image.png";
 
 const images = [
   { id: 1, src: PondokDukuh1, title: "Pondok Dukuh" },
@@ -15,6 +16,7 @@ const images = [
   { id: 3, src: PondokKuliner1, title: "Pondok Kuliner" },
   { id: 4, src: TbSimatupang1, title: "TB Simatupang" },
   { id: 5, src: KosKuliner1, title: "Kios Kuliner" },
+  { id: 6, src: Masjid, title: "MASJID AL-MU'MIN" },
 ];
 
 const SliderGallery = () => {

@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import Image from "next/image";
-import heroImage from "../../Assets/hero-image.png";
+import heroImage from "../../Assets/bapaklukas1.png";
 
 const HeroSection: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
