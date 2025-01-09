@@ -1,5 +1,5 @@
 import React from "react";
-import ImageHome from "../../Assets/hero-image.png"
+import ImageHome from "../../Assets/bapaklukas1.png"
 import Image from "next/image";
 
 const AboutUs: React.FC = () => {
