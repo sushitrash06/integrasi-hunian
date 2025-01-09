@@ -3,12 +3,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link"; 
-import PondokDukuh1 from "../../assets/pondok-dukuh1.png";
-import BapakLukas1 from "../../assets/bapak-lukas1.png";
-import PondokKuliner1 from "../../assets/pondok-kuliner1.png";
-import TbSimatupang1 from "../../assets/tb-simatupang1.png";
-import KosKuliner1 from "../../assets/kios-kuliner1.png";
-import Masjid from "../../assets/hero-image.png";
+import PondokDukuh1 from "../../assets/pondokdukuh1.png";
+import BapakLukas1 from "../../assets/bapaklukas1.png";
+import PondokKuliner1 from "../../assets/pondokkuliner1.png";
+import TbSimatupang1 from "../../assets/tbsimatupang1.png";
+import KosKuliner1 from "../../assets/kioskuliner1.png";
 
 const images = [
   { id: 1, src: PondokDukuh1, title: "Pondok Dukuh" },
@@ -16,7 +15,6 @@ const images = [
   { id: 3, src: PondokKuliner1, title: "Pondok Kuliner" },
   { id: 4, src: TbSimatupang1, title: "TB Simatupang" },
   { id: 5, src: KosKuliner1, title: "Kios Kuliner" },
-  { id: 6, src: Masjid, title: "Masjid Al-Hikmah" },
 ];
 
 const SliderGallery = () => {
