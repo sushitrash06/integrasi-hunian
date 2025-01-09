@@ -2,23 +2,21 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link"; // Import Link from next
-
-// Import images
-import pondokDukuh1 from "../../assets/pondok-dukuh1.png";
-import bapakLukas1 from "../../assets/bapak-lukas1.png";
-import pondokKuliner1 from "../../assets/pondok-kuliner1.png";
-import tbSimatupang1 from "../../assets/tb-simatupang1.png";
-import kosKuliner1 from "../../assets/kios-kuliner1.png";
-import masjid from "../../assets/hero-image.png";
+import Link from "next/link"; 
+import PondokDukuh1 from "../../assets/pondok-dukuh1.png";
+import BapakLukas1 from "../../assets/bapak-lukas1.png";
+import PondokKuliner1 from "../../assets/pondok-kuliner1.png";
+import TbSimatupang1 from "../../assets/tb-simatupang1.png";
+import KosKuliner1 from "../../assets/kios-kuliner1.png";
+import Masjid from "../../assets/hero-image.png";
 
 const images = [
-  { id: 1, src: pondokDukuh1, title: "Pondok Dukuh" },
-  { id: 2, src: bapakLukas1, title: "Bapak Lukas Residence" },
-  { id: 3, src: pondokKuliner1, title: "Pondok Kuliner" },
-  { id: 4, src: tbSimatupang1, title: "TB Simatupang" },
-  { id: 5, src: kosKuliner1, title: "Kios Kuliner" },
-  { id: 6, src: masjid, title: "Masjid Al-Hikmah" },
+  { id: 1, src: PondokDukuh1, title: "Pondok Dukuh" },
+  { id: 2, src: BapakLukas1, title: "Bapak Lukas Residence" },
+  { id: 3, src: PondokKuliner1, title: "Pondok Kuliner" },
+  { id: 4, src: TbSimatupang1, title: "TB Simatupang" },
+  { id: 5, src: KosKuliner1, title: "Kios Kuliner" },
+  { id: 6, src: Masjid, title: "Masjid Al-Hikmah" },
 ];
 
 const SliderGallery = () => {
