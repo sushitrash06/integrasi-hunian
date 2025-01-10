@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import heroImage from "../../Assets/hero-image.png";
+import Link from "next/link";
 
 const HeroSection: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -41,7 +42,7 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Navigation */}
-      <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-8 md:px-16 py-4">
+      <div className="absolute hidden top-0 left-0 right-0 z-20 md:flex items-center justify-between px-8 md:px-16 py-4">
         <nav className="space-x-8 text-white relative">
           <a href="#" className="hover:text-maroon-700">
             Tentang Kami
@@ -68,12 +69,12 @@ const HeroSection: React.FC = () => {
             {isDropdownOpen && (
               <ul className="absolute left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/jasa-renovasi-rumah"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
                     Jasa Renovasi Rumah
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a

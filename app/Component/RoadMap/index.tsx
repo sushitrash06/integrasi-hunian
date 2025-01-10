@@ -93,11 +93,11 @@ const RoadmapSection: FC = () => {
 
   return (
     <div className="bg-gray-50 py-10">
-      <div className="container mx-auto px-6 flex flex-wrap">
-        <div className="w-[50%]">
+    <div className="container mx-auto px-6 flex flex-wrap md:flex-nowrap gap-6">
+      {/* Section Kiri */}
+      <div className="md:w-1/2">
         <h2 className="text-3xl font-bold text-black">
-          Bekerjasama Dengan <span className="text-maroon-600">
-          Integrasi Hunian </span>
+          Bekerjasama Dengan <span className="text-maroon-600">Integrasi Hunian</span>
         </h2>
         <h3 className="text-2xl font-bold text-gray-800 mt-4 mb-6">
           Roadmap Bekerjasama Dengan Integrasi Hunian
@@ -107,31 +107,32 @@ const RoadmapSection: FC = () => {
           pertimbangan untuk membangun hunian impian Anda. Adapun proses yang Anda harus lalui jika
           menggunakan jasa kami adalah seperti tercantum pada tabel di bawah.
         </p>
-        </div>
-   
-
-        <div className="rounded-lg shadow-md p-6 w-[50%]">
-          {roadmapData.map((item) => (
-            <div key={item.id} className="mb-4 border-b last:border-b-0 border-maroon-300">
-              <button
-                className={`flex items-center justify-between w-full py-4 text-left text-maroon-700 font-semibold ${
-                  activeIndex === item.id ? "text-maroon-800" : ""
-                }`}
-                onClick={() => toggleAccordion(item.id)}
-              >
-                <span>{item.title}</span>
-                <span className="text-maroon-600">
-                  {activeIndex === item.id ? "-" : "+"}
-                </span>
-              </button>
-              {activeIndex === item.id && (
-                <div className="text-gray-700 mt-2">{item.content}</div>
-              )}
-            </div>
-          ))}
-        </div>
+      </div>
+  
+      {/* Section Kanan */}
+      <div className="md:w-1/2 rounded-lg shadow-md p-6">
+        {roadmapData.map((item) => (
+          <div key={item.id} className="mb-4 border-b last:border-b-0 border-maroon-300">
+            <button
+              className={`flex items-center justify-between w-full py-4 text-left text-maroon-700 font-semibold ${
+                activeIndex === item.id ? "text-maroon-800" : ""
+              }`}
+              onClick={() => toggleAccordion(item.id)}
+            >
+              <span>{item.title}</span>
+              <span className="text-maroon-600">
+                {activeIndex === item.id ? "-" : "+"}
+              </span>
+            </button>
+            {activeIndex === item.id && (
+              <div className="text-gray-700 mt-2">{item.content}</div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
+  </div>
+  
   );
 };
 
