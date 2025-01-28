@@ -1,7 +1,44 @@
-import React from "react";
+"use client"
+
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import { FaPhone, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaHome } from "react-icons/fa";
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const { name, email, subject, phone, message } = formData;
+
+    // Format pesan WhatsApp
+    const whatsappMessage = `Halo, saya ${name}.
+Email: ${email}
+Telepon: ${phone}
+Subjek: ${subject}
+Pesan: ${message}`;
+
+    // Nomor WhatsApp tujuan
+    const whatsappNumber = "6281911712052"; // Ganti dengan nomor tujuan
+
+    // Redirect ke WhatsApp
+    const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(
+      whatsappMessage
+    )}`;
+    window.open(whatsappURL, "_blank");
+  };
+
   return (
     <div className="bg-white py-16">
       <div className="container mx-auto px-6 lg:px-16">
@@ -9,34 +46,49 @@ const ContactSection = () => {
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <h2 className="text-3xl font-bold text-maroon-800 mb-6">Kirimkan kami Pesan</h2>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <input
                   type="text"
+                  name="name"
                   placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full border border-maroon-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-maroon-500"
                 />
                 <input
                   type="email"
+                  name="email"
                   placeholder="Your Email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full border border-maroon-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-maroon-500"
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <input
                   type="text"
+                  name="subject"
                   placeholder="Subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   className="w-full border border-maroon-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-maroon-500"
                 />
                 <input
                   type="tel"
+                  name="phone"
                   placeholder="Phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   className="w-full border border-maroon-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-maroon-500"
                 />
               </div>
               <textarea
+                name="message"
                 placeholder="Your message"
                 rows={4}
+                value={formData.message}
+                onChange={handleChange}
                 className="w-full border border-maroon-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-maroon-500"
               ></textarea>
               <button

@@ -12,7 +12,6 @@ export default function Home() {
     <main>
       <HeroSection />
       <AboutUs />
-      <ConstructionExperienceSection />
       <LayananUtama />
       <IntegrationSection />
       <RoadmapSection/>
