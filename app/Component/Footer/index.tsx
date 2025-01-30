@@ -23,9 +23,8 @@ const Footer: React.FC = () => {
             <li>Kantor Pusat Jakarta</li>
             <li>Kantor Operasional Jawa Tengah</li>
             <li>Kantor Operasional Bandung</li>
-            <li>150130</li>
-            <li>marketing@bintorobuild.co.id</li>
-            <li>0813 4000 8080</li>
+            <li>+6281911712052</li>
+            <li>ihsanudinramdani@gmail.com</li>
           </ul>
         </div>
 

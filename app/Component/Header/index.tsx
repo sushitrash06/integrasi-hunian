@@ -5,10 +5,12 @@ import Logo from "../../Assets/logo.png";
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { useProfile } from "@/app/Context/profile-context";
 
 const Header: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { profile } = useProfile();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -40,15 +42,15 @@ const Header: React.FC = () => {
             <div className="flex items-center space-x-3">
               <IoCall size={24} className="text-white" />
               <div>
-                <p className="text-sm font-semibold">150130</p>
-                <p className="text-sm">ihsanudinramdani@gmail.com</p>
+                <p className="text-sm font-semibold">{profile?.number_phone}</p>
+                <p className="text-sm">{profile?.email}</p>
               </div>
             </div>
             <div className="flex items-center space-x-3">
               <IoLocation size={24} className="text-white" />
               <div>
                 <p className="text-sm font-semibold">Area Layanan</p>
-                <p className="text-sm">JABODETABEK</p>
+                <p className="text-sm">{profile?.address}</p>
               </div>
             </div>
           </div>

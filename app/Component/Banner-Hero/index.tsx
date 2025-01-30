@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import Image from "next/image";
-import heroImage from "../../Assets/hero-image.png";
+import heroImage from "../../Assets/banner-hero.png";
 import Link from "next/link";
 
 const HeroSection: React.FC = () => {
