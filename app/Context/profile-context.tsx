@@ -34,6 +34,7 @@ export const ProfileProvider: React.FC<ProfileProviderProps> = ({ children }) =>
     } catch (err) {
       setError("Failed to load profile");
       setLoading(false);
+      console.log(err)
     }
   };
 
