@@ -1,5 +1,13 @@
 // next.config.mjs
 const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/api/projects",
+        destination: "http://103.150.117.209:1337/api/projects?populate=*",
+      },
+    ];
+  },
     images: {
       remotePatterns: [
         {
