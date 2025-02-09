@@ -4,6 +4,10 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+console.log(API_BASE_URL)
+
 // **Definisikan tipe data berdasarkan response API**
 interface Project {
   id: number;
@@ -17,13 +21,13 @@ interface Project {
 }
 
 const GaleryGrid: React.FC = () => {
-  const [projects, setProjects] = useState<Project[]>([]); // 👈 Tambahkan tipe array
+  const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:1337/api/projects?populate=*")
+      .get(`${API_BASE_URL}/api/projects?populate=*`)
       .then((response) => {
-        setProjects(response.data.data); // ✅ Sekarang TypeScript mengenali data
+        setProjects(response.data.data);
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
@@ -39,7 +43,7 @@ const GaleryGrid: React.FC = () => {
             <Image
               src={
                 project.photo.length > 0
-                  ? `http://localhost:1337${project.photo[0].formats.small?.url || project.photo[0].url}`
+                  ? `${API_BASE_URL}${project.photo[0].formats.small?.url || project.photo[0].url}`
                   : "/placeholder.png" // Jika tidak ada gambar
               }
               alt={project.name}

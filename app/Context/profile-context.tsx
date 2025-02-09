@@ -10,6 +10,7 @@ interface ProfileContextType {
   error: string | null;
   fetchProfile: () => void;
 }
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // Create the context
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
@@ -28,7 +29,7 @@ export const ProfileProvider: React.FC<ProfileProviderProps> = ({ children }) =>
   const fetchProfile = async () => {
     setLoading(true);
     try {
-      const response = await axios.get<ApiResponse>("http://localhost:1337/api/profile-contact");
+      const response = await axios.get<ApiResponse>(`${API_BASE_URL}api/profile-contact`);
       setProfile(response.data.data);
       setLoading(false);
     } catch (err) {

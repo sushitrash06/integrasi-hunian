@@ -4,16 +4,16 @@ const nextConfig = {
       remotePatterns: [
         {
           protocol: "http",
-          hostname: "localhost",
+          hostname: "103.150.117.209",
           port: "1337",
           pathname: "/uploads/**",
         },
       ],
     },
     env: {
-      NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337",
+      NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || "http://103.150.117.209:1337",
     }
   };
   
-  export default nextConfig; // ✅ Ubah dari `module.exports` ke `export default`
+  export default nextConfig;
   
