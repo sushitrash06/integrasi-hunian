@@ -29,7 +29,7 @@ export const ProfileProvider: React.FC<ProfileProviderProps> = ({ children }) =>
   const fetchProfile = async () => {
     setLoading(true);
     try {
-      const response = await axios.get<ApiResponse>(`${API_BASE_URL}api/profile-contact`);
+      const response = await axios.get<ApiResponse>(`${API_BASE_URL}/api/profile-contact`);
       setProfile(response.data.data);
       setLoading(false);
     } catch (err) {
