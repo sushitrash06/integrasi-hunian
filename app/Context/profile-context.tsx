@@ -12,12 +12,10 @@ interface ProfileContextType {
 }
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-// Create the context
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 
-// Type for the ProfileProvider's props
 interface ProfileProviderProps {
-  children: ReactNode;  // Explicitly typing children prop
+  children: ReactNode; 
 }
 
 // Context provider component
