@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "./Component/Header";
-import Footer from "./Component/Footer";
 import { ProfileProvider } from "./Context/profile-context";
+import Footer from "./Component/Footer";
+import Header from "./Component/Header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   description: "Design & Build | Mewujudkan Hunian Impian Anda dengan Desain dan Konstruksi Terbaik",
 };
 
+// Komponen Layout yang mengecek login
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,11 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ProfileProvider> 
-          <Header />
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ProfileProvider>
+          <Header/>
           {children}
           <Footer />
         </ProfileProvider>

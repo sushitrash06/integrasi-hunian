@@ -1,54 +1,65 @@
-"use client"
+"use client";
+
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import axios from "axios";
 import { ApiResponse, ProfileData } from "./type";
+import { useAuthStore } from "@/src/store/authStore";
 
-// Define context shape
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 interface ProfileContextType {
   profile: ProfileData | null;
   loading: boolean;
   error: string | null;
   fetchProfile: () => void;
+  isAuthenticated: boolean;
+  logout: () => void;
 }
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 
 interface ProfileProviderProps {
-  children: ReactNode; 
+  children: ReactNode;
 }
 
-// Context provider component
 export const ProfileProvider: React.FC<ProfileProviderProps> = ({ children }) => {
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const { token, clearAuth } = useAuthStore(); // Ambil token dari Zustand Store
+
+  useEffect(() => {
+    fetchProfile(); // Panggil fetchProfile() langsung saat komponen mount
+  }, []); // Hapus token dari dependency agar tetap fetch data meskipun belum login
+
+  console.log(profile, "ini profile");
 
   const fetchProfile = async () => {
     setLoading(true);
+    setError(null);
     try {
-      const response = await axios.get<ApiResponse>(`${API_BASE_URL}/api/profile-contact`);
+      const response = await axios.get<ApiResponse>(`${API_BASE_URL}/api/auth/profile-contact?userId=1`);
+      console.log(response.data.data);
       setProfile(response.data.data);
-      setLoading(false);
     } catch (err) {
-      setError("Failed to load profile");
+      setError(`Failed to load profile ${err}`);
+    } finally {
       setLoading(false);
-      console.log(err)
     }
   };
 
-  useEffect(() => {
-    fetchProfile();
-  }, []);
+  const logout = () => {
+    clearAuth();
+    setProfile(null);
+  };
 
   return (
-    <ProfileContext.Provider value={{ profile, loading, error, fetchProfile }}>
+    <ProfileContext.Provider value={{ profile, loading, error, fetchProfile, isAuthenticated: !!token, logout }}>
       {children}
     </ProfileContext.Provider>
   );
 };
 
-// Custom hook to use the profile context
 export const useProfile = (): ProfileContextType => {
   const context = useContext(ProfileContext);
   if (!context) {

@@ -15,3 +15,11 @@ export interface ProfileData {
     meta: object;
   }
   
+  export interface Profile {
+    id: number;
+    name: string;
+    phone: string;
+    address: string;
+    email: string;
+  }
+  
