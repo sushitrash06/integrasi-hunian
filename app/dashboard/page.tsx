@@ -46,8 +46,8 @@ export default function AddProjectModal() {
       setDescription("");
       setImages(null);
       closeModal();
-    } catch (error: any) {
-      alert(`Error: ${error.message}`);
+    } catch (error: unknown) {
+      alert(`Error: ${error}`);
     } finally {
       setLoading(false);
     }

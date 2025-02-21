@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
-type Project = {
+interface Project {
   id: number;
   nama_project: string;
   deskripsi: string;
   gambar: string[];
   createdAt: string;
-};
+}
 
 export default function ProjectTable() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -22,10 +23,10 @@ export default function ProjectTable() {
     try {
       const res = await fetch("/api/auth/projects");
       if (!res.ok) throw new Error("Gagal mengambil data");
-      const data = await res.json();
+      const data: Project[] = await res.json();
       setProjects(data);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -37,9 +38,9 @@ export default function ProjectTable() {
     try {
       const res = await fetch(`/api/auth/projects/${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Gagal menghapus project");
-      setProjects(projects.filter((project) => project.id !== id));
-    } catch (err: any) {
-      alert(err.message);
+      setProjects((prev) => prev.filter((project) => project.id !== id));
+    } catch (err: unknown) {
+      if (err instanceof Error) alert(err.message);
     }
   };
 
@@ -58,12 +59,12 @@ export default function ProjectTable() {
       });
       if (!res.ok) throw new Error("Gagal mengupdate project");
 
-      setProjects(
-        projects.map((p) => (p.id === editingProject.id ? editingProject : p))
+      setProjects((prev) =>
+        prev.map((p) => (p.id === editingProject.id ? editingProject : p))
       );
       setEditingProject(null);
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) alert(err.message);
     }
   };
 
@@ -92,17 +93,31 @@ export default function ProjectTable() {
               <td className="border border-gray-300 p-2">{project.deskripsi}</td>
               <td className="border border-gray-300 p-2">
                 {project.gambar.length > 0 ? (
-                  <img src={project.gambar[0]} alt="Preview" className="w-16 h-16 object-cover" />
+                  <Image
+                    src={project.gambar[0]}
+                    alt="Preview"
+                    width={64}
+                    height={64}
+                    className="object-cover"
+                  />
                 ) : (
                   "No Image"
                 )}
               </td>
-              <td className="border border-gray-300 p-2">{new Date(project.createdAt).toLocaleDateString()}</td>
               <td className="border border-gray-300 p-2">
-                <button onClick={() => handleEdit(project)} className="bg-blue-500 text-white px-2 py-1 rounded mr-2">
+                {new Date(project.createdAt).toLocaleDateString()}
+              </td>
+              <td className="border border-gray-300 p-2">
+                <button
+                  onClick={() => handleEdit(project)}
+                  className="bg-blue-500 text-white px-2 py-1 rounded mr-2"
+                >
                   Edit
                 </button>
-                <button onClick={() => deleteProject(project.id)} className="bg-red-500 text-white px-2 py-1 rounded">
+                <button
+                  onClick={() => deleteProject(project.id)}
+                  className="bg-red-500 text-white px-2 py-1 rounded"
+                >
                   Hapus
                 </button>
               </td>
@@ -117,15 +132,22 @@ export default function ProjectTable() {
           <input
             type="text"
             value={editingProject.nama_project}
-            onChange={(e) => setEditingProject({ ...editingProject, nama_project: e.target.value })}
+            onChange={(e) =>
+              setEditingProject({ ...editingProject, nama_project: e.target.value })
+            }
             className="border p-2 w-full mb-2"
           />
           <textarea
             value={editingProject.deskripsi}
-            onChange={(e) => setEditingProject({ ...editingProject, deskripsi: e.target.value })}
+            onChange={(e) =>
+              setEditingProject({ ...editingProject, deskripsi: e.target.value })
+            }
             className="border p-2 w-full mb-2"
           />
-          <button onClick={handleUpdate} className="bg-green-500 text-white px-4 py-2 rounded">
+          <button
+            onClick={handleUpdate}
+            className="bg-green-500 text-white px-4 py-2 rounded"
+          >
             Simpan Perubahan
           </button>
           <button onClick={() => setEditingProject(null)} className="ml-2 text-gray-600">
