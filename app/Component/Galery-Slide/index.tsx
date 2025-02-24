@@ -1,38 +1,49 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import PondokDukuh1 from "../../Assets/pondokdukuh1.png";
-import BapakLukas1 from "../../Assets/bapaklukas1.png";
-import PondokKuliner1 from "../../Assets/pondokkuliner1.png";
-import TbSimatupang1 from "../../Assets/tbsimatupang1.png";
-import KosKuliner1 from "../../Assets/kioskuliner1.png";
-import Masjid from "../../Assets/hero-image.png";
+import axios from "axios";
 
-const images = [
-  { id: 1, src: PondokDukuh1, title: "Pondok Dukuh" },
-  { id: 2, src: BapakLukas1, title: "Bapak Lukas Residence" },
-  { id: 3, src: PondokKuliner1, title: "Pondok Kuliner" },
-  { id: 4, src: TbSimatupang1, title: "TB Simatupang" },
-  { id: 5, src: KosKuliner1, title: "Kios Kuliner" },
-  { id: 6, src: Masjid, title: "MASJID AL-MU'MIN" },
-];
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+interface Project {
+  id: number;
+  name: string;
+  photo: string[];
+}
 
 const SliderGallery = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [startPosition, setStartPosition] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
+  useEffect(() => {
+    axios
+      .get(`${API_BASE_URL}/api/auth/projects`)
+      .then((response) => {
+        const mappedProjects = response.data.map((project: any) => ({
+          id: project.id,
+          name: project.nama_project, // Menyesuaikan dengan API
+          photo: project.gambar || [],
+        }));
+        setProjects(mappedProjects);
+      })
+      .catch((error) => console.error("Error fetching projects:", error));
+  }, []);
+
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex + 3 >= images.length ? 0 : prevIndex + 3
+      prevIndex + 3 >= projects.length ? 0 : prevIndex + 3
     );
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 3 : prevIndex - 3
+      prevIndex === 0 ? projects.length - 3 : prevIndex - 3
     );
   };
 
@@ -73,22 +84,22 @@ const SliderGallery = () => {
           className="flex transition-transform duration-500"
           style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
         >
-          {images.map((image) => (
+          {projects.map((project) => (
             <div
-              key={image.id}
+              key={project.id}
               className="w-1/3 flex-shrink-0 px-2 relative group"
             >
               {/* Image */}
               <Image
-                src={image.src}
-                alt={`Slide ${image.id}`}
+                src={project.photo.length > 0 ? project.photo[0] : "/placeholder.png"}
+                alt={project.name}
                 width={400}
                 height={300}
                 className="rounded-lg object-cover w-full h-full"
               />
               {/* Overlay Text */}
               <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300 rounded-lg">
-                <p className="text-white text-lg font-bold">{image.title}</p>
+                <p className="text-white text-lg font-bold">{project.name}</p>
               </div>
             </div>
           ))}
@@ -111,7 +122,7 @@ const SliderGallery = () => {
 
       {/* Dots Indicator */}
       <div className="flex justify-center mt-4 space-x-2">
-        {Array.from({ length: Math.ceil(images.length / 3) }).map(
+        {Array.from({ length: Math.ceil(projects.length / 3) }).map(
           (_, index) => (
             <button
               key={index}

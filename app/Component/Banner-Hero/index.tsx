@@ -1,10 +1,27 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import heroImage from "../../Assets/banner-hero.png";
 import Link from "next/link";
+import axios from "axios";
+import { Package } from "@/app/packages/page";
 
 const HeroSection: React.FC = () => {
+  const [packages, setPackages] = useState<Package[]>([]);
+  useEffect(() => {
+    fetchPackages();
+  }, []);
+
+  const fetchPackages = async () => {
+    try {
+      const res = await axios.get("/api/service/package");
+      setPackages(res.data);
+    } catch (err) {
+      console.error("Error fetching packages:", err);
+    } finally {
+      console.log("done");
+    }
+  };
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -29,7 +46,8 @@ const HeroSection: React.FC = () => {
         </h1>
         <p className="mt-1 text-lg text-black">Design & Build</p>
         <p className="mt-4 text-lg md:text-xl text-black">
-          Mewujudkan Hunian Impian Anda dengan Desain dan Konstruksi Terbaik
+          Integrasi Hunian adalah penyedian jasa desain arsitektur/ struktur/
+          interior/ lanscape sekaligus dengan pekerjaan konstruksinya.
         </p>
         <div className="mt-6 flex space-x-4">
           <a
@@ -67,63 +85,20 @@ const HeroSection: React.FC = () => {
               </svg>
             </button>
             {isDropdownOpen && (
-              <ul className="absolute left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
-                <li>
-                  <Link
-                    href="/jasa-renovasi-rumah"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Jasa Renovasi Rumah
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Jasa Bangun Rumah
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Kontraktor Kost
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Kontraktor Kolam Renang
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Kontraktor Ruko
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Jasa Pengurusan IMB
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100"
-                  >
-                    Jasa Desain Arsitek
-                  </a>
-                </li>
+              <ul className="absolute p-3 left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
+                {packages &&
+                  packages.map((data: Package, index) => {
+                    return (
+                      <li key={index}>
+                        <Link
+                          href="#"
+                          className="block text-gray-700 hover:text-maroon-700"
+                        >
+                          {data.name}
+                        </Link>
+                      </li>
+                    );
+                  })}
               </ul>
             )}
           </div>

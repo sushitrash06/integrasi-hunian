@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useProfile } from "@/app/Context/profile-context";
+import { Package } from "@/app/packages/page";
+import axios from "axios";
 
 const menuItems = [
   { name: "Dashboard", path: "/dashboard" },
@@ -15,6 +17,21 @@ const menuItems = [
 ];
 
 const Header: React.FC = () => {
+ const [packages, setPackages] = useState<Package[]>([]);
+  useEffect(() => {
+    fetchPackages();
+  }, []);
+
+  const fetchPackages = async () => {
+    try {
+      const res = await axios.get("/api/service/package");
+      setPackages(res.data);
+    } catch (err) {
+      console.error("Error fetching packages:", err);
+    } finally {
+      console.log("Sukses");
+    }
+  };
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { profile, isAuthenticated } = useProfile();
@@ -114,30 +131,21 @@ const Header: React.FC = () => {
                     </button>
                     {isDropdownOpen && (
                       <ul className="mt-2 space-y-2">
-                        <li>
-                          <Link
-                            href="#"
-                            className="block text-gray-700 hover:text-maroon-700"
-                          >
-                            Jasa Renovasi Rumah
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="#"
-                            className="block text-gray-700 hover:text-maroon-700"
-                          >
-                            Jasa Bangun Rumah
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            href="#"
-                            className="block text-gray-700 hover:text-maroon-700"
-                          >
-                            Kontraktor Kost
-                          </Link>
-                        </li>
+                        {
+                         packages && packages.map((data:Package, index)=>{
+                            return(
+                              <li key={index}>
+                              <Link
+                                href="#"
+                                className="block text-gray-700 hover:text-maroon-700"
+                              >
+                                {data.name}
+                              </Link>
+                            </li>
+                            )
+                          })
+                        }
+                 
                       </ul>
                     )}
                   </div>
@@ -171,17 +179,21 @@ const Header: React.FC = () => {
                     <span>Layanan Kami</span>
                   </button>
                   {isDropdownOpen && (
-                    <ul className="absolute left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
-                      <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100">
-                          Jasa Renovasi Rumah
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100">
-                          Jasa Bangun Rumah
-                        </a>
-                      </li>
+                    <ul className="absolute p-3 left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
+                          {
+                         packages && packages.map((data:Package, index)=>{
+                            return(
+                              <li key={index}>
+                              <Link
+                                href="#"
+                                className="block text-gray-700 hover:text-maroon-700"
+                              >
+                                {data.name}
+                              </Link>
+                            </li>
+                            )
+                          })
+                        }
                     </ul>
                   )}
                 </div>

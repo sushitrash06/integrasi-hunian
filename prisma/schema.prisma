@@ -27,6 +27,20 @@ model Project {
   @@map("projects")
 }
 
+model Package {
+  id         Int     @id @default(autoincrement())
+  name       String
+  price      String  @default("")
+  foundation String  @default("")
+  structure  String  @default("")
+  wall       String  @default("")
+  frame      String  @default("")
+  ceiling    String  @default("")
+  roof       String  @default("")
+  floor      String  @default("")
+  sanitary   String  @default("")
+  paint      String  @default("")
+}
 
 
 

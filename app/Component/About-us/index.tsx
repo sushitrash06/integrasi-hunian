@@ -12,15 +12,10 @@ const AboutUs: React.FC = () => {
             Jasa Renovasi, Arsitek, dan Borongan Bangunan
           </h2>
           <p className="text-gray-700 mb-4">
-            Pada zaman modern ini, seluruh aspek dalam bangunan meliputi keindahan,
-            ketahanan, serta harga pembangunan harus sangat diperhatikan. Untuk
-            membangun sebuah bangunan yang kokoh dibutuhkan proses pembangunan yang
-            terukur serta waktu yang efisien.
-          </p>
+          Banyaknya jenis bangunan dengan desain yang  beragam berdampak pada berubahnya penggunaan bahan/ material bangunan dari tahun ke tahun. Banyak sebagian orang yg membangun huniannya dengan meniru yang ada di internet tapi hasilnya tidak memuaskan dan tidak didukung oleh pekerja yang ahli dibidangnya, pastinya hal tersebut membuat anda pusing karena sudah keluar uang banyak tapi hasilnya tidak sesuai ekspektasi.
+            </p>
           <p className="text-gray-700">
-            Maka dari itu Bintoro Build hadir untuk mewujudkan impian anda memiliki
-            bangunan yang kokoh dan indah dengan harga <strong>TERJANGKAU</strong>{" "}
-            melalui jasa renovasi,{" "}
+          Untuk menciptakan keluarga  harmonis anda  maka sarana yang utama adalah Rumah/ Hunian yang nyaman, <strong>INTEGRASI HUNIAN</strong> hadir untuk melayani anda menciptakan rumah Impian dengan Arsitek & para pekerja bangunan yang sudah kami percaya ahli dibidangnya. Tentunya dengan harga yang terjangkau ditambah sudah FREE biaya gambar 2D /3D, RAB (Rencana Anggaran Bangunan).
             <a
               href="#"
               className="text-red-600 font-semibold hover:underline"

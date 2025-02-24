@@ -1,20 +1,23 @@
+import { NextApiRequest } from "next";
 import jwt from "jsonwebtoken";
-import { NextApiRequest, NextApiResponse } from "next";
 
-const SECRET_KEY = process.env.SECRET_KEY!;
+const SECRET_KEY = process.env.JWT_SECRET || "rahasia_superadmin";
 
-export function authenticate(req: NextApiRequest, res: NextApiResponse) {
-    const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-        res.status(401).json({ message: "Unauthorized" });
-        return null;
-    }
+export function authenticate(req: NextApiRequest) {
+  const token = req.headers.authorization?.split(" ")[1]; // Ambil token setelah "Bearer "
+  console.log("Token yang diterima di backend:", token);
 
-    const token = authHeader.split(" ")[1];
-    try {
-        return jwt.verify(token, SECRET_KEY);
-    } catch (error) {
-        res.status(401).json({ message: error });
-        return null;
-    }
+  if (!token) {
+    console.log("Token tidak ditemukan di header");
+    return false;
+  }
+
+  try {
+    const decoded = jwt.verify(token, SECRET_KEY);
+    console.log("Token valid, payload:", decoded);
+    return decoded;
+  } catch (error) {
+    console.log("Token invalid:", error);
+    return false;
+  }
 }
