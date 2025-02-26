@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import Image1 from '../../Assets/image3.png'
-import Image2 from '../../Assets/image4.png'
-import Image3 from '../../Assets/image5.png'
+import Image1 from '../Assets/image3.png'
+import Image2 from '../Assets/image4.png'
+import Image3 from '../Assets/image5.png'
 
 const LayananUtama: React.FC = () => {
   const layananLainnya = [
