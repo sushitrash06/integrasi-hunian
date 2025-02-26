@@ -16,9 +16,18 @@ const menuItems = [
 ];
 
 const layananLainnya = [
-  "Jasa Renovasi dan Perbaikan",
-  "Jasa Borongan Bangunan",
-  "Jasa Arsitek",
+  {
+    title: "Jasa Renovasi dan Perbaikan",
+    link: "/services/jasa-renovasi"
+  },
+  {
+    title: "Jasa Borongan Bangunan",
+    link: "/services/borongan-bangunan"
+  },
+  {
+    title: "Jasa Arsitek",
+    link: "/services/jasa-architect"
+  },
 ];
 
 const Header: React.FC = () => {
@@ -112,14 +121,14 @@ const Header: React.FC = () => {
                     {isDropdownOpen && (
                       <ul className="mt-2 space-y-2">
                         {layananLainnya &&
-                          layananLainnya.map((data: string, index) => {
+                          layananLainnya.map((data, index) => {
                             return (
                               <li key={index}>
                                 <Link
-                                  href="#"
+                                  href={data.link}
                                   className="block hover:font-semibold text-gray-700 hover:text-maroon-700"
                                 >
-                                  {data}
+                                  {data.title}
                                 </Link>
                               </li>
                             );
@@ -160,14 +169,14 @@ const Header: React.FC = () => {
                   {isDropdownOpen && (
                     <ul className="absolute p-3 left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
                       {layananLainnya &&
-                        layananLainnya.map((data: string, index) => {
+                        layananLainnya.map((data, index) => {
                           return (
                             <li key={index}>
                               <Link
-                                href="#"
+                                href={data.link}
                                 className="block text-gray-700 hover:text-maroon-700"
                               >
-                                {data}
+                                {data.title}
                               </Link>
                             </li>
                           );

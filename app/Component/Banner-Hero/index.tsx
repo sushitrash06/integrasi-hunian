@@ -7,9 +7,18 @@ import { BiChevronDown } from "react-icons/bi";
 
 const HeroSection: React.FC = () => {
   const layananLainnya = [
-    "Jasa Renovasi dan Perbaikan",
-    "Jasa Borongan Bangunan",
-    "Jasa Arsitek",
+    {
+      title: "Jasa Renovasi dan Perbaikan",
+      link: "/services/jasa-renovasi"
+    },
+    {
+      title: "Jasa Borongan Bangunan",
+      link: "/services/borongan-bangunan"
+    },
+    {
+      title: "Jasa Arsitek",
+      link: "/services/jasa-architect"
+    },
   ];
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -65,14 +74,14 @@ const HeroSection: React.FC = () => {
             {isDropdownOpen && (
               <ul className="absolute p-3 left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
                 {layananLainnya &&
-                  layananLainnya.map((data: string, index) => {
+                  layananLainnya.map((data, index) => {
                     return (
                       <li key={index}>
                         <Link
-                          href="#"
+                          href={data.link.toString()}
                           className="block text-gray-700 hover:text-maroon-700 hover:font-semibold"
                         >
-                          {data}
+                          {data.title}
                         </Link>
                       </li>
                     );
