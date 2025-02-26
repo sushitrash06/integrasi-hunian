@@ -1,27 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import heroImage from "../../Assets/banner-hero.png";
 import Link from "next/link";
-import axios from "axios";
-import { Package } from "@/app/packages/page";
+import { BiChevronDown } from "react-icons/bi";
 
 const HeroSection: React.FC = () => {
-  const [packages, setPackages] = useState<Package[]>([]);
-  useEffect(() => {
-    fetchPackages();
-  }, []);
-
-  const fetchPackages = async () => {
-    try {
-      const res = await axios.get("/api/service/package");
-      setPackages(res.data);
-    } catch (err) {
-      console.error("Error fetching packages:", err);
-    } finally {
-      console.log("done");
-    }
-  };
+  const layananLainnya = [
+    "Jasa Renovasi dan Perbaikan",
+    "Jasa Borongan Bangunan",
+    "Jasa Arsitek",
+  ];
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -71,30 +60,19 @@ const HeroSection: React.FC = () => {
               className="hover:text-maroon-700 flex items-center space-x-2"
             >
               <span>Layanan Kami</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <BiChevronDown className="text-white"/>
             </button>
             {isDropdownOpen && (
               <ul className="absolute p-3 left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
-                {packages &&
-                  packages.map((data: Package, index) => {
+                {layananLainnya &&
+                  layananLainnya.map((data: string, index) => {
                     return (
                       <li key={index}>
                         <Link
                           href="#"
-                          className="block text-gray-700 hover:text-maroon-700"
+                          className="block text-gray-700 hover:text-maroon-700 hover:font-semibold"
                         >
-                          {data.name}
+                          {data}
                         </Link>
                       </li>
                     );
@@ -102,8 +80,11 @@ const HeroSection: React.FC = () => {
               </ul>
             )}
           </div>
-          <a href="#" className="hover:text-maroon-700">
-            Portofolio
+          <a href="/projects" className="hover:text-maroon-700">
+            Project
+          </a>
+          <a href="/all-package" className="hover:text-maroon-700">
+            Paket
           </a>
         </nav>
         <a

@@ -6,32 +6,22 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useProfile } from "@/app/Context/profile-context";
-import { Package } from "@/app/packages/page";
-import axios from "axios";
+import { BiChevronDown } from "react-icons/bi";
 
 const menuItems = [
   { name: "Dashboard", path: "/dashboard" },
   { name: "Service", path: "/dashboard/service" },
   { name: "Project", path: "/dashboard/project" },
-  { name: "Package", path: "/dashboard/package" },
+  { name: "Package", path: "/all-package" },
+];
+
+const layananLainnya = [
+  "Jasa Renovasi dan Perbaikan",
+  "Jasa Borongan Bangunan",
+  "Jasa Arsitek",
 ];
 
 const Header: React.FC = () => {
- const [packages, setPackages] = useState<Package[]>([]);
-  useEffect(() => {
-    fetchPackages();
-  }, []);
-
-  const fetchPackages = async () => {
-    try {
-      const res = await axios.get("/api/service/package");
-      setPackages(res.data);
-    } catch (err) {
-      console.error("Error fetching packages:", err);
-    } finally {
-      console.log("Sukses");
-    }
-  };
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { profile, isAuthenticated } = useProfile();
@@ -116,44 +106,32 @@ const Header: React.FC = () => {
                       className="text-maroon-700 flex items-center space-x-2 hover:text-maroon-500"
                     >
                       <span>Layanan Kami</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
+
+                      <BiChevronDown className="text-maroon-600" />
                     </button>
                     {isDropdownOpen && (
                       <ul className="mt-2 space-y-2">
-                        {
-                         packages && packages.map((data:Package, index)=>{
-                            return(
+                        {layananLainnya &&
+                          layananLainnya.map((data: string, index) => {
+                            return (
                               <li key={index}>
-                              <Link
-                                href="#"
-                                className="block text-gray-700 hover:text-maroon-700"
-                              >
-                                {data.name}
-                              </Link>
-                            </li>
-                            )
-                          })
-                        }
-                 
+                                <Link
+                                  href="#"
+                                  className="block hover:font-semibold text-gray-700 hover:text-maroon-700"
+                                >
+                                  {data}
+                                </Link>
+                              </li>
+                            );
+                          })}
                       </ul>
                     )}
                   </div>
                   <Link
-                    href="#"
+                    href="/projects"
                     className="text-maroon-700 hover:text-maroon-500"
                   >
-                    Portofolio
+                    Project
                   </Link>
                   <Link
                     href="#"
@@ -177,28 +155,28 @@ const Header: React.FC = () => {
                     className="hover:text-maroon-700 flex items-center space-x-2"
                   >
                     <span>Layanan Kami</span>
+                    <BiChevronDown className="text-maroon-600" />
                   </button>
                   {isDropdownOpen && (
                     <ul className="absolute p-3 left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
-                          {
-                         packages && packages.map((data:Package, index)=>{
-                            return(
-                              <li key={index}>
+                      {layananLainnya &&
+                        layananLainnya.map((data: string, index) => {
+                          return (
+                            <li key={index}>
                               <Link
                                 href="#"
                                 className="block text-gray-700 hover:text-maroon-700"
                               >
-                                {data.name}
+                                {data}
                               </Link>
                             </li>
-                            )
-                          })
-                        }
+                          );
+                        })}
                     </ul>
                   )}
                 </div>
-                <a href="#" className="hover:text-maroon-700">
-                  Portofolio
+                <a href="/projects" className="hover:text-maroon-700">
+                  Project
                 </a>
               </nav>
             </div>
@@ -208,7 +186,11 @@ const Header: React.FC = () => {
         <>
           <nav className="flex gap-2">
             {menuItems.map((item) => (
-              <Link key={item.path} href={item.path} className="block py-2 px-4">
+              <Link
+                key={item.path}
+                href={item.path}
+                className="block py-2 px-4"
+              >
                 {item.name}
               </Link>
             ))}

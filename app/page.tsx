@@ -1,3 +1,4 @@
+import AllPackage from "./all-package/page";
 import AboutUs from "./Component/About-us";
 import HeroSection from "./Component/Banner-Hero";
 import ContactSection from "./Component/Contact";
@@ -14,6 +15,7 @@ export default function Home() {
       <LayananUtama />
       <IntegrationSection />
       <RoadmapSection/>
+      <AllPackage />
       <SliderGallery />
       <ContactSection />
     </main>
