@@ -8,6 +8,7 @@ export interface ProfileData {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
+    phone: string;
   }
   
   export interface ApiResponse {

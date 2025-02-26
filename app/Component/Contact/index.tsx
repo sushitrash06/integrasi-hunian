@@ -1,5 +1,6 @@
 "use client";
 
+import { useProfile } from "@/app/Context/profile-context";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import {
   FaPhone,
@@ -17,6 +18,7 @@ const ContactSection = () => {
     phone: "",
     message: "",
   });
+  const { profile } = useProfile();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -32,10 +34,10 @@ const ContactSection = () => {
 
     // Format pesan WhatsApp
     const whatsappMessage = `Halo, saya ${name}.
-Email: ${email}
-Telepon: ${phone}
-Subjek: ${subject}
-Pesan: ${message}`;
+      Email: ${email}
+      Telepon: ${phone}
+      Subjek: ${subject}
+      Pesan: ${message}`;
 
     // Nomor WhatsApp tujuan
     const whatsappNumber = "6281911712052"; // Ganti dengan nomor tujuan
@@ -117,22 +119,17 @@ Pesan: ${message}`;
             </h3>
             <div className="space-y-4">
               <div className="flex items-center">
-                <FaPhone className="text-maroon-100 mr-4" />
-                <span>150130</span>
-              </div>
-              <div className="flex items-center">
                 <FaWhatsapp className="text-maroon-100 mr-4" />
-                <span>0813 4000 8080 / 0822 1000 6600</span>
+                <span>{profile?.phone}</span>
               </div>
               <div className="flex items-center">
                 <FaEnvelope className="text-maroon-100 mr-4" />
-                <span>marketing@integrasihunian.co.id</span>
+                <span>{profile?.email}</span>
               </div>
               <div className="flex items-center">
                 <FaMapMarkerAlt className="text-maroon-100 mr-4" />
                 <span>
-                  Casamora Square, Jl. Sirsak, Ciganjur, Jagakarsa, Jakarta
-                  Selatan
+                  {profile?.address}
                 </span>
               </div>
             </div>

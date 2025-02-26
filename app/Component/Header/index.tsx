@@ -62,7 +62,7 @@ const Header: React.FC = () => {
             <div className="flex items-center space-x-3">
               <IoCall size={24} className="text-white" />
               <div>
-                <p className="text-sm font-semibold">{profile?.number_phone}</p>
+                <p className="text-sm font-semibold">{profile?.phone}</p>
                 <p className="text-sm">{profile?.email}</p>
               </div>
             </div>
@@ -70,7 +70,7 @@ const Header: React.FC = () => {
               <IoLocation size={24} className="text-white" />
               <div>
                 <p className="text-sm font-semibold">Area Layanan</p>
-                <p className="text-sm">{profile?.address}</p>
+                <p className="text-sm">Jabodetabek</p>
               </div>
             </div>
           </div>
