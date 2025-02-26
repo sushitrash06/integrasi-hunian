@@ -3,7 +3,6 @@
 import { useProfile } from "@/app/Context/profile-context";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import {
-  FaPhone,
   FaWhatsapp,
   FaEnvelope,
   FaMapMarkerAlt,
