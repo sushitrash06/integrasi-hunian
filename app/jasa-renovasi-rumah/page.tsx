@@ -167,7 +167,7 @@ const IntegrasiHunian: React.FC = () => {
           <section>
             <div className="container mx-auto px-4 text-center">
               <h2 className="text-2xl font-bold mb-4">
-                Proses Renovasi Rumah BintoroBuild
+                Proses Renovasi Rumah IntegrasiHunian
               </h2>
             </div>
             <Accordion items={stepsData.steps} />

@@ -3,38 +3,9 @@ import Image from "next/image";
 import Image1 from '../../Assets/image3.png'
 import Image2 from '../../Assets/image4.png'
 import Image3 from '../../Assets/image5.png'
+import Link from "next/link";
 
 const LayananUtama: React.FC = () => {
-  const layananLainnya = [
-    "Jasa Renovasi dan Perbaikan Rumah",
-    "Jasa Renovasi dan Perbaikan Ruko",
-    "Jasa Renovasi dan Perbaikan Kamar Mandi",
-    "Jasa Renovasi dan Perbaikan Atap / Genteng",
-    "Jasa Renovasi dan Perbaikan Lantai",
-    "Jasa Renovasi dan Perbaikan Pagar",
-    "Jasa Renovasi Meningkat Rumah",
-    "Jasa Renovasi Tambah Ruangan",
-    "Jasa Renovasi Membuat Dak",
-    "Jasa Pengecatan",
-    "Jasa Borongan Bangunan Rumah",
-    "Jasa Borongan Bangunan Ruko",
-    "Jasa Borongan Bangunan Kantor",
-    "Jasa Borongan Bangunan Gudang",
-    "Jasa Borongan Bangunan Kolam Renang",
-    "Jasa Borongan Bangunan Kost",
-    "Jasa Borongan Bangunan Carport",
-    "Jasa Arsitek",
-    "Jasa desain arsitek rumah 3D",
-    "Jasa gambar kerja",
-    "Jasa desain interior",
-    "Jasa interior",
-    "Jasa Partisi",
-    "Jasa Instalasi Kanopi",
-    "Jual Rangka Atap Baja Ringan",
-    "Jual Rolling Door",
-    "Jasa Kusen Pintu dan Jendela",
-    "Jasa Pengeboran Sumur",
-  ];
 
   return (
     <section className="bg-gray-100 py-12 px-6">
@@ -71,6 +42,7 @@ const LayananUtama: React.FC = () => {
           </div>
 
           <div className="bg-maroon-700 text-white rounded-lg shadow-md overflow-hidden">
+            <Link href="/services/borongan-bangunan">
             <Image
                src={Image3}
               alt="Borongan Bangunan"
@@ -79,20 +51,9 @@ const LayananUtama: React.FC = () => {
             <div className="p-6">
               <h3 className="text-xl font-semibold">Borongan Bangunan</h3>
             </div>
+            </Link>
+          
           </div>
-        </div>
-
-        {/* Layanan Lainnya */}
-        <h3 className="text-2xl font-bold text-maroon-700 mb-6">
-          Layanan kami lainnya secara rinci adalah sebagai berikut:
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
-          {layananLainnya.map((layanan, index) => (
-            <div key={index} className="flex items-center">
-              <span className="text-maroon-700 text-xl mr-2">🛠️</span>
-              <p className="text-gray-700">{layanan}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>

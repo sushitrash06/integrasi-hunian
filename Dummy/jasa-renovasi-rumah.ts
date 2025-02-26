@@ -2,7 +2,7 @@ export const stepsData = {
   steps: [
     {
       title: "Survey",
-      body: "<p>Pekerjaan renovasi rumah butuh survey dahulu agar Anda dapat menyampaikan segala ide dalam melakukan renovasi rumah kepada tim Quantity Surveyor BintoroBuild.</p><ul><li>Lokasi mana saja yang ingin Anda lakukan renovasi</li><li>Kebutuhan ruang baru</li><li>Luas masing-masing ruangan</li><li>Spesifikasi material yang Anda suka</li></ul>",
+      body: "<p>Pekerjaan renovasi rumah butuh survey dahulu agar Anda dapat menyampaikan segala ide dalam melakukan renovasi rumah kepada tim Quantity Surveyor IntegrasiHunian.</p><ul><li>Lokasi mana saja yang ingin Anda lakukan renovasi</li><li>Kebutuhan ruang baru</li><li>Luas masing-masing ruangan</li><li>Spesifikasi material yang Anda suka</li></ul>",
     },
     {
       title: "Konsultasi dan Gambar Arsitek",

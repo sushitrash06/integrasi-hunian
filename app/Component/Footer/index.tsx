@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
       <div className="text-center mt-8 text-sm">
-        &copy; {new Date().getFullYear()} BintoroBuild. All rights reserved.
+        &copy; {new Date().getFullYear()} IntegrasiHunian. All rights reserved.
       </div>
     </footer>
   );
