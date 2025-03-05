@@ -43,7 +43,7 @@ const HeroSection: React.FC = () => {
           INTEGRASI <span className="text-maroon-700">HUNIAN</span>
         </h1>
         <p className="mt-1 text-lg text-black">Design & Build</p>
-        <p className="mt-4 text-lg md:text-xl text-black">
+        <p className="mt-4 text-lg md:text-xl max-w-xl text-black">
           Integrasi Hunian adalah penyedian jasa desain arsitektur/ struktur/
           interior/ lanscape sekaligus dengan pekerjaan konstruksinya.
         </p>

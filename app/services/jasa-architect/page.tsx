@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { FaCheckCircle } from "react-icons/fa";
 import Image1 from "../../Assets/working-blueprint.jpg";
+import AllPackage from "@/app/all-package/page";
 
 const LayananUtama: React.FC = () => {
   const layananLainnya = [
@@ -21,7 +22,6 @@ const LayananUtama: React.FC = () => {
   return (
     <div className="px-8 md:px-16 p-6 pb-10">
       <div className="relative h-screen bg-gray-950">
-        {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <Image
             src={Image1}
@@ -30,7 +30,6 @@ const LayananUtama: React.FC = () => {
           />
           <div className="absolute inset-0 bg-gray-600 bg-opacity-40"></div>
         </div>
-        {/* Content */}
         <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 md:px-16 text-white">
           <h1 className="text-4xl text-center text-white md:text-6xl font-bold">
             Jasa Arsitek
@@ -38,8 +37,7 @@ const LayananUtama: React.FC = () => {
         </div>
       </div>
       
-      {/* Section Tambahan */}
-      <div className="mt-10 px-8 md:px-16 px-8 md:px-16">
+      <div className="mt-10 px-8 md:px-16">
         <h2 className="text-2xl md:text-4xl font-bold text-gray-900">
           Apakah Anda sedang merasakan hal-hal ini sekarang?
         </h2>
@@ -77,7 +75,6 @@ const LayananUtama: React.FC = () => {
           <li>As built drawing, yang biasanya berisi informasi seputar perubahan yang terjadi selama proyek seperti pada jaringan listrik, alur pipa, dll.</li>
         </ul>
       </div>
-        {/* Layanan Lainnya dengan Icon */}
         <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mt-10">
           Layanan Lainnya
         </h2>
